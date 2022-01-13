@@ -4,14 +4,14 @@ import 'package:flutter/material.dart';
 class CustomButtonSocial extends StatelessWidget {
   final String text;
   final String imageName;
-  final Function onPressed;
+  final Function onPress;
 
-  const CustomButtonSocial(
-      {Key? key,
-      required this.text,
-      required this.imageName,
-      required this.onPressed})
-      : super(key: key);
+  const CustomButtonSocial({
+    Key? key,
+    required this.text,
+    required this.imageName,
+    required this.onPress,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,10 +22,8 @@ class CustomButtonSocial extends StatelessWidget {
       ),
       child: FlatButton(
           onPressed: () {},
-          shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(
-            10,
-          )),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
           child: Row(
             children: [
               Image.asset(imageName),
