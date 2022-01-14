@@ -20,6 +20,7 @@ class CustomText extends StatelessWidget {
         style: TextStyle(
           color: color,
           fontSize: fontSize,
+          fontWeight: FontWeight.bold,
         ),
       ),
     );

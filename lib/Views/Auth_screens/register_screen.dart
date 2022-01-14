@@ -1,6 +1,6 @@
 import 'package:e_commerce_app/Constance.dart';
 import 'package:e_commerce_app/Core/View_model/Auth_view_model.dart';
-import 'package:e_commerce_app/Views/Auth_screens/register_screen.dart';
+import 'package:e_commerce_app/Views/Auth_screens/login_screen.dart';
 import 'package:e_commerce_app/Views/Home_screen.dart';
 import 'package:e_commerce_app/Views/Widgets/CustomButton.dart';
 import 'package:e_commerce_app/Views/Widgets/CustomButtonSocial.dart';
@@ -9,9 +9,9 @@ import 'package:e_commerce_app/Views/Widgets/CustomTextFromField.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class LoginScreen extends GetWidget<AuthViewModel> {
+class RegisterScreen extends GetWidget<AuthViewModel> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  LoginScreen({Key? key}) : super(key: key);
+  RegisterScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,6 +19,15 @@ class LoginScreen extends GetWidget<AuthViewModel> {
       appBar: AppBar(
         elevation: 0.0,
         backgroundColor: Colors.white,
+        leading: GestureDetector(
+          onTap: () {
+            Get.off(LoginScreen());
+          },
+          child: Icon(
+            Icons.arrow_back,
+            color: Colors.black,
+          ),
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.only(
@@ -31,34 +40,32 @@ class LoginScreen extends GetWidget<AuthViewModel> {
           child: Column(
             children: [
               Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CustomText(
-                    text: "Welcome,",
+                    text: "Sign Up",
                     fontSize: 30,
-                  ),
-                  GestureDetector(
-                    onTap: () {
-                      Get.to(RegisterScreen());
-                    },
-                    child: CustomText(
-                      text: "Sign Up",
-                      color: primaryColor,
-                      fontSize: 18,
-                    ),
                   ),
                 ],
               ),
               SizedBox(
                 height: 10,
               ),
-              CustomText(
-                text: "Sign in to Continue",
-                fontSize: 14,
-                color: Colors.grey,
-              ),
               SizedBox(
                 height: 30,
+              ),
+              CustomTextFromField(
+                text: "Name",
+                hintText: "Alaa ",
+                onSave: () {},
+                validatore: (value) {
+                  if (value == null) {
+                    print("ERROR");
+                  }
+                },
+              ),
+              SizedBox(
+                height: 10,
               ),
               CustomTextFromField(
                 text: "Email",
@@ -88,41 +95,19 @@ class LoginScreen extends GetWidget<AuthViewModel> {
                 },
               ),
               SizedBox(
-                height: 20,
-              ),
-              CustomText(
-                text: "forget your password",
-                fontSize: 14,
-                alignment: Alignment.topRight,
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomButton(
-                text: "SIGN IN",
-                onPress: () {},
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              CustomText(
-                text: "-OR-",
-                alignment: Alignment.center,
-                fontSize: 20,
-              ),
-              SizedBox(
                 height: 40,
               ),
-              CustomButtonSocial(
-                text: "Sign in with Facebook",
-                imageName: 'assets/images/facebook.png',
+              CustomButton(
+                text: "SIGN Up",
+                onPress: () {
+                  _formKey.currentState!.save();
+                  if (_formKey.currentState!.validate()) {
+                    controller.signInWithEmailAndPassword();
+                  }
+                },
               ),
               SizedBox(
-                height: 10,
-              ),
-              CustomButtonSocial(
-                text: "Sign in with Google",
-                imageName: 'assets/images/google.png',
+                height: 20,
               ),
             ],
           ),

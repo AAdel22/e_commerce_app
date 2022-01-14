@@ -4,13 +4,11 @@ import 'package:flutter/material.dart';
 class CustomButtonSocial extends StatelessWidget {
   final String text;
   final String imageName;
-  final Function onPress;
 
   const CustomButtonSocial({
     Key? key,
     required this.text,
     required this.imageName,
-    required this.onPress,
   }) : super(key: key);
 
   @override

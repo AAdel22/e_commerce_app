@@ -1,3 +1,4 @@
+import 'package:e_commerce_app/Views/Home_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,6 +9,7 @@ class AuthViewModel extends GetxController {
   FirebaseAuth _auth = FirebaseAuth.instance;
 
   late String email, password;
+
   @override
   void onInit() {
     // TODO: implement onInit
@@ -34,6 +36,7 @@ class AuthViewModel extends GetxController {
   void signInWithEmailAndPassword() async {
     try {
       await _auth.signInWithEmailAndPassword(email: email, password: password);
+      Get.offAll(HomeScreen());
     } catch (e) {
       print(e.toString());
       Get.snackbar(
